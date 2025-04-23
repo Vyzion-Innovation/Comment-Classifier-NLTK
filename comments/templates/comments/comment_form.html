@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comment Classifier</title>
+</head>
+<body>
+    <h1>Enter a Comment</h1>
+    <form method="POST" action="{% url 'submit_comment' %}">
+        {% csrf_token %}
+        <textarea name="comment" rows="4" cols="50" required></textarea>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Good Comments</h2>
+    <ul>
+        {% for comment in good_comments %}
+            <li>{{ comment.text }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Bad Comments</h2>
+    <ul>
+        {% for comment in bad_comments %}
+            <li>{{ comment.text }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
